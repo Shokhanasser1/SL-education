@@ -12,17 +12,23 @@ body {
   align-items: center;
   justify-content: center;
   background: #BDBDBD;
+  z-index: -3;
+  position: relative;
 }
 
 main {
   width: 100%;
   max-width: 1920px;
-  height: 100%;
+  height: auto;
+  background: #F6F7F9;
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: -2;
   justify-content: center;
 }
 
 $blue: #00093C;
 $gray: #BDBDBD;
+$orange: #F7941D;
+$sky: #27AAE1;

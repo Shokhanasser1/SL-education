@@ -3,6 +3,17 @@ import { memo } from "react";
 function Footer() {
     return (
         <section className="bottom">
+            <section>
+                <img src="../../public/bird.png" alt="" />
+                <div>
+                    <h3>Help with choosing?</h3>
+                    <p>
+                        Leave a request and our specialists will contact you,
+                        answer all your questions and select a suitable training
+                        option.
+                    </p>
+                </div>
+            </section>
             <footer>
                 <div>
                     <h2>SL Education</h2>
