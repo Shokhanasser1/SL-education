@@ -49,7 +49,7 @@ function Nav() {
                 +998-12-345-67-89
             </a>
             <div>
-                <Link className="link" to={"/signin"}>
+                <Link className="link" to={"/sign_in"}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="24px"

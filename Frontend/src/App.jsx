@@ -10,7 +10,7 @@ function App() {
         <BrowserRouter>
             <Nav />
             <Routes>
-                <Route path="login" element={<Login /> } />
+                <Route path="sign_in" element={<Login /> } />
                 <Route path="register" element={<Register /> } />
             </Routes>
             <Footer />
