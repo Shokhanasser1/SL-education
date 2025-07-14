@@ -26,7 +26,7 @@ export default function Register() {
       <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
       <button onClick={handleRegister}>Зарегистрироваться</button>
       <Link className='close-btn' to="/">❌</Link>
-      <p>Уже есть аккаунт? <Link to="/login">Войти</Link></p>
+      <p>Уже есть аккаунт? <Link to="/sign_in">Войти</Link></p>
       <p>{message}</p>
     </div>
   )
