@@ -4,46 +4,95 @@ import { Link } from 'react-router-dom';
 import './authenficationStyle.scss';
 
 export default function Register() {
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [firstname, setFirstname] = useState('')
-  const [lastname, setLastname] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordConfirm, setPasswordConfirm] = useState('')
-  const [message, setMessage] = useState('')
 
-  const handleRegister = async () => {
+  const [formData, setFormData] = useState({ username: "", email: "", firstname: "", lastname: "",  password: "", passwordConfirm: "" });
+  const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.username || !formData.email || !formData.firstname || !formData.lastname || !formData.password || !formData.passwordConfirm) {
+      setMessage("Заполните все поля");
+      return;
+    }
+    if (formData.password !== formData.passwordConfirm) {
+        setMessage("Пароли не совпадают");
+        return;
+    }
+    if (formData.password.length < 8) {
+        setMessage("Пароль должен быть не менее 8 символов");
+        return;
+    }
+    if (formData.username.length < 3) {
+        setMessage("Имя пользователя должно быть не менее 3 символов");
+        return;
+    }
+    
+
     try {
-      const res = await axios.post('http://localhost:8000/api/register/', {
-        username,
-        email,
-        firstname,
-        lastname,
-        password,
-        passwordConfirm,
-      })
-      setMessage(res.data.message)
+      const res = await axios.post('http://localhost:8000/api/register/', formData);
+      if (res.status === 201) {
+        setMessage("Регистрация прошла успешно");
+      }
     } catch (err) {
       setMessage(err.response?.data?.error || 'Ошибка регистрации')
     }
   }
-
   return (
     <div className="container">
       <div className="log-reg-btns">
         <a href="/register" className="reg-btn" data-active>Регистрация</a>
         <a href="/sign_in" className="log-btn">Вход</a>
       </div>
-      <div className="inputs-container">
-        <input placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-        <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-        <input placeholder="First name" value={firstname} onChange={e => setFirstname(e.target.value)} />
-        <input placeholder="Last name" value={lastname} onChange={e => setLastname(e.target.value)} />
-        <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-        <input placeholder="Comfirm your password" type="PasswordConfirm" value={passwordConfirm} onChange={e => setPasswordConfirm(e.target.value)} />
-        <button onClick={handleRegister}>Зарегистрироваться</button>
-      </div>
-      <p>{message}</p>
+      <form onSubmit={handleSubmit} className="inputs-container">
+        <input
+        type='text'
+        name='username' 
+        placeholder="Username"
+        value={formData.username}
+        onChange={handleChange}
+        />
+        <input 
+        type='email'
+        name='email'
+        placeholder="email"
+        value={formData.email}
+        onChange={handleChange}
+        />
+        <input
+        type='text'
+        name='firstname'
+        placeholder="First name"
+        value={formData.firstname}
+        onChange={handleChange}
+        />
+        <input
+        type='text'
+        name='lastname'
+        placeholder="Last name"
+        value={formData.lastname}
+        onChange={handleChange}
+        />
+        <input
+        type='password'
+        name='password'
+        placeholder="Password"
+        value={formData.password} 
+        onChange={handleChange}
+        />
+        <input
+        type='password'
+        name='passwordConfirm'
+        placeholder="Comfirm your password"
+        value={formData.passwordConfirm} 
+        onChange={handleChange}
+        />
+        <button type='submit'>Зарегистрироваться</button>
+        {message && <p className="message">{message}</p>}
+      </form>
     </div>
   )
 }

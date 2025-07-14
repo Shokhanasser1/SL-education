@@ -5,22 +5,30 @@ import './authenficationStyle.scss';
 
 
 export default function Login() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [token, setToken] = useState(null)
+  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [message, setMessage] = useState("");
 
-  const handleLogin = async () => {
-    try {
-      const res = await axios.post('http://localhost:8000/api/login/', {
-        username,
-        password
-      })
-      setToken(res.data.access)
-      localStorage.setItem('token', res.data.access)
-    } catch (err) {
-      alert('Ошибка входа')
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.username || !formData.password) {
+      setMessage("Заполните все поля");
+      return;
     }
-  }
+
+
+    try {
+      const res = await axios.post('http://localhost:8000/api/login/', formData);
+      const token = res.data.access;
+      localStorage.setItem('token', token);
+      setMessage("Вход выполнен успешно!");
+    } catch (err) {
+      setMessage(err.response?.data?.error || 'Неверные данные');
+    }
+  };
 
   return (
     <div className="container">
@@ -28,12 +36,24 @@ export default function Login() {
         <a href="/register" className="reg-btn">Регистрация</a>
         <a href="/sign_in" className="log-btn" data-active>Вход</a>
       </div>
-      <div className="inputs-container">
-        <input placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-        <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-        <button onClick={handleLogin}>Войти</button>
-      </div>
-      {token && <p>Токен: {token}</p>}
+      <form onSubmit={handleSubmit} className="inputs-container">
+        <input 
+        type='text'
+        name='username'
+        placeholder="Username" 
+        value={formData.username} 
+        onChange={handleChange}
+        />
+        <input
+        type='password'
+        name='password'
+        placeholder="Password" 
+        value={formData.password} 
+        onChange={handleChange} 
+        />
+        <button type='submit'>Войти</button>
+      {message && <p>{message}</p>}
+      </form>
     </div>
-  )
+  );
 }
