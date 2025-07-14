@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './authenficationStyle.scss';
+
 
 export default function Login() {
   const [username, setUsername] = useState('')
@@ -21,14 +23,17 @@ export default function Login() {
   }
 
   return (
-    <div>
-      <h2>Вход</h2>
-      <input placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-      <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      <button onClick={handleLogin}>Войти</button>
-      <Link className='close-btn' to="/">❌</Link>
+    <div className="container">
+      <div className="log-reg-btns">
+        <a href="/register" className="reg-btn">Регистрация</a>
+        <a href="/sign_in" className="log-btn" data-active>Вход</a>
+      </div>
+      <div className="inputs-container">
+        <input placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
+        <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+        <button onClick={handleLogin}>Войти</button>
+      </div>
       {token && <p>Токен: {token}</p>}
-      <p>Нет аккаунта? <Link to="/register">Зарегистрироваться</Link></p>
     </div>
   )
 }
