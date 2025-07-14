@@ -1,8 +1,9 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from django.contrib.auth.models import User
-
+from users.models import CustomUser
+from users.serializers import MyTokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 @api_view(['POST'])
 def register(request):
     username = request.data.get('username')
@@ -11,8 +12,9 @@ def register(request):
     lastname = request.data.get('lastname')
     password = request.data.get('password')
     passwordConfirm = request.data.get('passwordConfirm')
+    role = request.data.get('role', 'student')
     
-    if User.objects.filter(username=username).exists():
+    if CustomUser.objects.filter(username=username).exists():
         return Response({'error': 'Пользователь уже существует'}, status=400)
 
     if not username:
@@ -31,5 +33,15 @@ def register(request):
         return Response({'error': 'Пароли не совпадают'}, status=400)
 
 
-    User.objects.create_user(username=username, password=password, first_name=firstname, last_name=lastname)
+    CustomUser.objects.create_user(
+        username=username,
+        password=password,
+        email=email, 
+        first_name=firstname, 
+        last_name=lastname,
+        role=role 
+        )
     return Response({'message': 'Регистрация успешна'}, status=201)
+    
+class MyTokenObtainPairView(TokenObtainPairView):
+        serializer_class = MyTokenObtainPairSerializer

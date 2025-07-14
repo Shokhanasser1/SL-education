@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './authenficationStyle.scss';
 
 export default function Register() {
 
-  const [formData, setFormData] = useState({ username: "", email: "", firstname: "", lastname: "",  password: "", passwordConfirm: "" });
+  const [formData, setFormData] = useState({ username: "", email: "", firstname: "", lastname: "",  password: "", passwordConfirm: "", role: "student" });
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,6 +15,14 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    for (let key in formData) {
+      if (!formData[key]) {
+        setMessage("Заполните все поля");
+        return;
+      }
+    }
+
     if (!formData.username || !formData.email || !formData.firstname || !formData.lastname || !formData.password || !formData.passwordConfirm) {
       setMessage("Заполните все поля");
       return;
@@ -36,9 +45,29 @@ export default function Register() {
       const res = await axios.post('http://localhost:8000/api/register/', formData);
       if (res.status === 201) {
         setMessage("Регистрация прошла успешно");
+
+        const loginRes = await axios.post('http://localhost:8000/api/login/', {
+          username: formData.username,
+          password: formData.password
+        });
+
+        const { access, refresh, role } = loginRes.data;
+        localStorage.setItem("access", access);
+        localStorage.setItem("refresh", refresh);
+        localStorage.setItem("role", role);
+
+        navigate('/'); // Redirect to home page after successful registration
+        window.location.reload();
       }
-    } catch (err) {
-      setMessage(err.response?.data?.error || 'Ошибка регистрации')
+    } catch (error) {
+      if (error.response?.data?.error) {
+        setMessage(error.response?.data?.error);
+      } else if (typeof error.response?.data === 'object') {
+         const errors = Object.values(error.response.data).flat().join(', ');
+        setMessage(errors);
+      } else {
+        setMessage('Произошла ошибка при регистрации');
+      }
     }
   }
   return (
@@ -90,6 +119,11 @@ export default function Register() {
         value={formData.passwordConfirm} 
         onChange={handleChange}
         />
+        <select name="role" onChange={handleChange}>
+          <option value="student">Ученик</option>
+          <option value="teacher">Учитель</option>
+          <option value="admin">Администратор</option>
+        </select>
         <button type='submit'>Зарегистрироваться</button>
         {message && <p className="message">{message}</p>}
       </form>

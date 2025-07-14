@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './authenficationStyle.scss';
 
 
 export default function Login() {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,9 +23,13 @@ export default function Login() {
 
     try {
       const res = await axios.post('http://localhost:8000/api/login/', formData);
-      const token = res.data.access;
-      localStorage.setItem('token', token);
+      localStorage.setItem("access", res.data.access);
+      localStorage.setItem("refressh", res.data.refresh);
+      localStorage.setItem('token', res.data.role);
+
       setMessage("Вход выполнен успешно!");
+      navigate('/'); // Redirect to home page after successful login
+      window
     } catch (err) {
       setMessage(err.response?.data?.error || 'Неверные данные');
     }
