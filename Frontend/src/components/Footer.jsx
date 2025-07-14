@@ -13,6 +13,16 @@ function Footer() {
                         option.
                     </p>
                 </div>
+                <form>
+                    <input className="name" type="text" required placeholder="Your name" />
+                    <input type="number" required placeholder="Your phone number" />
+                    <input type="email" required placeholder="Your e-mail" />
+                    <p>
+                        By clicking the button, I agree to the processing of
+                        personal data and to the rules for using the Platform
+                    </p>
+                    <button type="submit">Send</button>
+                </form>
             </section>
             <footer>
                 <div>
