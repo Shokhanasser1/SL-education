@@ -57,7 +57,17 @@ function Home() {
                             Adults
                         </h2>
                     </div>
-                    <section></section>
+                    <section>
+                        <h3>Robotics</h3>
+                        <h3>Creating games</h3>
+                        <h3>Web development</h3>
+                        <h3>Multimedia</h3>
+                        <h3>Chess</h3>
+                        <h3>3D modeling and design</h3>
+                        <h3>English</h3>
+                        <h3>Blogging</h3>
+                        <h3>Soft skills</h3>
+                    </section>
                 </div>
             </div>
         </section>

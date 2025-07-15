@@ -358,18 +358,51 @@ nav {
                 flex-direction: row;
                 justify-content: space-between;
                 gap: 100px;
+                position: relative;
+                &::after {
+                    position: absolute;
+                    content: "";
+                    top: 115%;
+                    width: 100%;
+                    left: 0%;
+                    background: $gray;
+                    height: 1px;
+                    z-index: -1;
+                }
 
                 h2 {
                     display: flex;
                     font-size: 16px;
                     font-weight: 700;
                     cursor: pointer;
+                    width: 100%;
                     gap: 5px;
                     align-items: center;
                     justify-content: center;
 
                     img {
                         width: 49px;
+                    }
+                }
+            }
+            section {
+                margin-top: 70px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                h3 {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    text-align: center;
+                    background: #fff;
+                    border-radius: 6px;
+                    box-shadow: -1px 0px 10px $orange, 1px 0px 10px $sky;
+                    cursor: pointer;
+                    transition: .3s;
+                    &:hover {
+                        box-shadow: -10px 0px 15px $orange, 10px 0px 15px $sky;
+
                     }
                 }
             }
@@ -383,8 +416,8 @@ nav {
         position: absolute;
         content: "";
         background: linear-gradient(to right, $orange, $sky);
-        height: 10px;
-        width: 275%;
+        height: 8px;
+        width: 100%;
         top: 100%;
     }
 }
