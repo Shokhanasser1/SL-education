@@ -29,7 +29,7 @@ export default function Login() {
 
       setMessage("Вход выполнен успешно!");
       navigate('/'); // Redirect to home page after successful login
-      window
+      window.location.reload(); // Reload the page to reflect changes
     } catch (err) {
       setMessage(err.response?.data?.error || 'Неверные данные');
     }
