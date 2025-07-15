@@ -1,25 +1,42 @@
-import { memo } from "react";
-import { Link } from "react-router-dom";
+import { memo, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.scss";
 
 function Nav() {
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [role, setRole] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("access");
+        const storedRole = localStorage.getItem("role");
+
+        if (token) {
+            setIsAuthenticated(true);
+            setRole(storedRole);
+        } else {
+            setIsAuthenticated(false);
+            setRole(null);
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.clear();
+        setIsAuthenticated(false);
+        setRole(null);
+        navigate("/");
+        window.location.reload();
+    };
+
     return (
         <nav>
-            <Link className="link" to={"/"}>
-                <h1>SL Education</h1>
-            </Link>
-            <Link className="link" to="/allCourses">
-                All courses
-            </Link>
-            <Link className="link" to="/events">
-                Events
-            </Link>
-            <Link className="link" to="/knowledgeBases">
-                Knowledge bases
-            </Link>
-            <Link className="link" to="/career">
-                Career
-            </Link>
+            <Link className="link" to="/"><h1>SL Education</h1></Link>
+            <Link className="link" to="/allCourses">All courses</Link>
+            <Link className="link" to="/events">Events</Link>
+            <Link className="link" to="/knowledgeBases">Knowledge bases</Link>
+            <Link className="link" to="/career">Career</Link>
+
             <div>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -49,6 +66,14 @@ function Nav() {
                 +998-12-345-67-89
             </a>
             <div>
+                {isAuthenticated ? (
+                    <>
+                        {role === "admin" && <Link className="link" to="/admin">Admin Panel</Link>}
+                        {role === "teacher" && <Link className="link" to="/teacher">Teacher Panel</Link>}
+                        <Link className="link" to="/profile">Profile</Link>
+                        <button onClick={handleLogout} className="link">Log out</button>
+                    </>
+                ) : (
                 <Link className="link" to={"/sign_in"}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -59,6 +84,7 @@ function Nav() {
                     </svg>
                     Sign In
                 </Link>
+                )}            
             </div>
         </nav>
     );
