@@ -220,21 +220,171 @@ nav {
                 padding: 10px;
 
                 &:focus {
-                    outline: none;
-                    &::after {
-                        position: absolute;
-                        top: -2px;
-                        left: -2px;
-                        right: -2px;
-                        bottom: -2px;
-                        content: "";
-                        border-radius: 6px;
-                        background: linear-gradient(to right, $orange, $sky);
-                        filter: blur(10px);
-                        z-index: -1;
+                    outline: $orange solid 2px;
+                }
+            }
+
+            button {
+                border-radius: 6px;
+                background: $orange;
+                font-size: 14px;
+                font-weight: 700;
+                height: 50px;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                transition: .3s;
+
+                &:hover {
+                    background: $orange-hover;
+                }
+            }
+
+            p {
+                font-size: 10px;
+                font-weight: 400;
+                line-height: 14px;
+            }
+        }
+    }
+}
+
+.home {
+    width: 100%;
+
+    .head {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+
+        div {
+            width: 1032px;
+            height: 480px;
+            background: $blue;
+            position: relative;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            flex-direction: column;
+            color: #fff;
+
+            h2 {
+                font-size: 36px;
+                font-weight: 700;
+                line-height: 100%;
+                margin-bottom: 20px;
+                margin-left: calc(30%);
+            }
+
+            h3 {
+                margin-left: calc(30%);
+                margin-top: 30px;
+                font-size: 20px;
+                font-weight: 500;
+            }
+
+            &::after {
+                left: 0%;
+                content: "";
+                position: absolute;
+                width: 1920px;
+                height: 100%;
+                background: url(../../public/girl.jpg);
+                z-index: -1;
+            }
+        }
+    }
+
+    .types {
+        padding: 50px 360px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 100px;
+
+        div:first-child {
+            img {
+                transform: scaleX(-1);
+                width: 168px;
+            }
+
+            div {
+                border-radius: 6px;
+                width: 260px;
+                position: relative;
+                background: #fff;
+                padding: 10px;
+
+                &::after {
+                    z-index: -1;
+                    content: "";
+                    position: absolute;
+                    top: -2px;
+                    left: -2px;
+                    bottom: -2px;
+                    right: -2px;
+                    border-radius: 6px;
+                    background: linear-gradient(to right, $orange, $sky);
+                    // width: 100%;
+                    // height: 100%;
+                }
+
+                &::before {
+                    content: " ";
+                    position: absolute;
+                    top: 100%;
+                    left: 70%;
+                    /* To the right of the tooltip */
+                    border-width: 20px;
+                    border-style: solid;
+                    border-color: $sky transparent transparent transparent;
+                    // border-image: linear-gradient(to right, $orange, $sky);
+                }
+            }
+        }
+
+        div:last-child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%;
+            div {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 100px;
+
+                h2 {
+                    display: flex;
+                    font-size: 16px;
+                    font-weight: 700;
+                    cursor: pointer;
+                    gap: 5px;
+                    align-items: center;
+                    justify-content: center;
+
+                    img {
+                        width: 49px;
                     }
                 }
             }
         }
+    }
+}
+
+.active1 {
+    position: relative;
+    &::after {
+        position: absolute;
+        content: "";
+        background: linear-gradient(to right, $orange, $sky);
+        height: 10px;
+        width: 275%;
+        top: 100%;
     }
 }

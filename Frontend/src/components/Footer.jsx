@@ -1,6 +1,24 @@
 import { memo } from "react";
+import emailjs from "emailjs-com";
 
 function Footer() {
+    const SERVICE_ID = "service_zolbm24";
+    const TEMPLATE_ID = "template_z5ti9ph";
+    const PUBLIC_KEY = "XQCUsrOdBJ2_APhDS";
+
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+        emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, PUBLIC_KEY).then(
+            (result) => {
+                alert("Message Sent Successfully");
+            },
+            (error) => {
+                console.log(error.text);
+                alert("Something went wrong!");
+            }
+        );
+        e.target.reset();
+    };
     return (
         <section className="bottom">
             <section>
@@ -13,10 +31,26 @@ function Footer() {
                         option.
                     </p>
                 </div>
-                <form>
-                    <input className="name" type="text" required placeholder="Your name" />
-                    <input type="number" required placeholder="Your phone number" />
-                    <input type="email" required placeholder="Your e-mail" />
+                <form onSubmit={handleOnSubmit}>
+                    <input
+                        className="name"
+                        type="text"
+                        required
+                        placeholder="Your name"
+                        name="user_name"
+                    />
+                    <input
+                        type="number"
+                        required
+                        placeholder="Your phone number"
+                        name="user_phone"
+                    />
+                    <input
+                        type="email"
+                        required
+                        placeholder="Your e-mail"
+                        name="user_email"
+                    />
                     <p>
                         By clicking the button, I agree to the processing of
                         personal data and to the rules for using the Platform

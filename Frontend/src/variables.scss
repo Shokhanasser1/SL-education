@@ -14,6 +14,8 @@ body {
   background: #BDBDBD;
   z-index: -3;
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 main {
@@ -32,3 +34,5 @@ $blue: #00093C;
 $gray: #BDBDBD;
 $orange: #F7941D;
 $sky: #27AAE1;
+$orange-hover:#FFAE4D;
+$dark-gray: #4F4F4F;
