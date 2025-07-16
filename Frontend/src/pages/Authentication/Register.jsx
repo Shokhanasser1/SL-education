@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './authenficationStyle.scss';
 
 export default function Register() {
@@ -55,6 +55,12 @@ export default function Register() {
         localStorage.setItem("access", access);
         localStorage.setItem("refresh", refresh);
         localStorage.setItem("role", role);
+
+        const res = await axios.post('http://localhost:8000/api/login/', formData);
+        localStorage.setItem("access", res.data.access);
+        localStorage.setItem("refresh", res.data.refresh);
+        localStorage.setItem('token', res.data.role);
+        localStorage.setItem('username', res.data.username);
 
         navigate('/'); // Redirect to home page after successful registration
         window.location.reload();

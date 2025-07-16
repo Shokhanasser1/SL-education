@@ -6,7 +6,7 @@ from users.serializers import MyTokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 @api_view(['POST'])
 def register(request):
-    username = request.data.get('username')
+    username = request.data.get('username') 
     email = request.data.get('email')
     firstname = request.data.get('firstname')
     lastname = request.data.get('lastname')
