@@ -26,6 +26,7 @@ export default function Login() {
       localStorage.setItem("access", res.data.access);
       localStorage.setItem("refressh", res.data.refresh);
       localStorage.setItem('token', res.data.role);
+      localStorage.setItem('username', res.data.username);
 
       setMessage("Вход выполнен успешно!");
       navigate('/'); // Redirect to home page after successful login

@@ -1,0 +1,50 @@
+.profile-menu {
+  position: relative;
+
+  .icon {
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+    transition: 0.3s;
+
+    &:hover {
+      color: #007bff;
+      transform: scale(1.1);
+    }
+  }
+
+  .dropdown {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    top: 36px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+
+    a,
+    button {
+      display: block;
+      padding: 8px 16px;
+      text-decoration: none;
+      color: #333;
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+
+      &:hover {
+        background: #f0f0f0;
+      }
+    }
+
+    button {
+      font-family: inherit;
+    }
+  }
+}
