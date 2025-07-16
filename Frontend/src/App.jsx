@@ -8,6 +8,8 @@ import Register from "./pages/Authentication/Register";
 import Profile from "./pages/Users_panel/Profile";
 import Settings from "./pages/Users_panel/Settings";
 
+import ErrorPage from "./components/ErrorPage";
+
 function App() {
     return (
         <BrowserRouter>
@@ -18,6 +20,9 @@ function App() {
                 <Route path="/" element={<Home /> } />
                 <Route path="/profile" element={<Profile /> } />
                 <Route path="/profile-settings" element={<Settings /> } />
+
+        {/* ⛔ Ловушка для всех остальных путей */}
+        <Route path="*" element={<ErrorPage />} />
             </Routes>
             <Footer />
         </BrowserRouter>
