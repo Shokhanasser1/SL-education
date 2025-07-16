@@ -7,6 +7,7 @@ import Register from "./pages/Authentication/Register";
 
 import Profile from "./pages/Users_panel/Profile";
 import Settings from "./pages/Users_panel/Settings";
+import TeacherDashboard from "./pages/Users_panel/TeacherPanel/TeacherDashboard";
 
 import ErrorPage from "./components/ErrorPage";
 
@@ -20,7 +21,7 @@ function App() {
                 <Route path="/" element={<Home /> } />
                 <Route path="/profile" element={<Profile /> } />
                 <Route path="/profile-settings" element={<Settings /> } />
-
+                <Route path="/teacher" element={<TeacherDashboard /> } />
         {/* ⛔ Ловушка для всех остальных путей */}
         <Route path="*" element={<ErrorPage />} />
             </Routes>

@@ -19,14 +19,24 @@ export default function Login() {
       setMessage("Заполните все поля");
       return;
     }
-
+    
 
     try {
-      const res = await axios.post('http://localhost:8000/api/login/', formData);
-      localStorage.setItem("access", res.data.access);
-      localStorage.setItem("refressh", res.data.refresh);
-      localStorage.setItem('token', res.data.role);
-      localStorage.setItem('username', res.data.username);
+        const loginRes = await axios.post('http://localhost:8000/api/login/', {
+          username: formData.username,
+          password: formData.password
+        });
+
+        const { access, refresh, role } = loginRes.data;
+        localStorage.setItem("access", access);
+        localStorage.setItem("refresh", refresh);
+        localStorage.setItem("role", role);
+
+        const res = await axios.post('http://localhost:8000/api/login/', formData);
+        localStorage.setItem("access", res.data.access);
+        localStorage.setItem("refresh", res.data.refresh);
+        localStorage.setItem('token', res.data.role);
+        localStorage.setItem('username', res.data.username);
 
       setMessage("Вход выполнен успешно!");
       navigate('/'); // Redirect to home page after successful login
