@@ -61,7 +61,7 @@ function Nav() {
                 {isAuthenticated ? (
                     <>
                         {role === "admin" && <Link className="link" to="/admin">Admin Panel</Link>}
-                        {role === "teacher" && <Link className="link" to="/teacher">Teacher Panel</Link>}
+                        {role === "teacher" && <Link className="link" to="/teacher">Teacher Dashboard</Link>}
                         {isAuthenticated && <ProfileMenu />}
                     </>
                 ) : (

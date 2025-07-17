@@ -8,6 +8,7 @@ import Register from "./pages/Authentication/Register";
 import Profile from "./pages/Users_panel/Profile";
 import Settings from "./pages/Users_panel/Settings";
 import TeacherDashboard from "./pages/Users_panel/TeacherPanel/TeacherDashboard";
+import AddCourseForm from "./pages/Users_panel/TeacherPanel/AddCourseForm";
 
 import ErrorPage from "./components/ErrorPage";
 
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/profile" element={<Profile /> } />
                 <Route path="/profile-settings" element={<Settings /> } />
                 <Route path="/teacher" element={<TeacherDashboard /> } />
+                <Route path="/teacher/add-course" element={<AddCourseForm /> } />
         {/* ⛔ Ловушка для всех остальных путей */}
         <Route path="*" element={<ErrorPage />} />
             </Routes>
