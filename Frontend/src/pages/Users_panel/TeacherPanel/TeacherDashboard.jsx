@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import MyCourses from './MyCourses';
+import '../UsersStyle.scss';
 
 export default function TeacherDashboard() {
     return (
-   <div className="teacher-dashboard">
+   <div className="teacher-dashboard-container">
       <h2>Панель учителя</h2>
-      <Link className='link' to={'/teacher/add-course'}>Добавить</Link>
-
+      <Link className='link' to={'/teacher-dashboard/add-course'}>Добавить</Link>
       <MyCourses />
     </div> 
     )

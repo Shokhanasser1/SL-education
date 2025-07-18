@@ -22,8 +22,8 @@ function App() {
                 <Route path="/" element={<Home /> } />
                 <Route path="/profile" element={<Profile /> } />
                 <Route path="/profile-settings" element={<Settings /> } />
-                <Route path="/teacher" element={<TeacherDashboard /> } />
-                <Route path="/teacher/add-course" element={<AddCourseForm /> } />
+                <Route path="/teacher-dashboard" element={<TeacherDashboard /> } />
+                <Route path="/teacher-dashboard/add-course" element={<AddCourseForm /> } />
         {/* ⛔ Ловушка для всех остальных путей */}
         <Route path="*" element={<ErrorPage />} />
             </Routes>

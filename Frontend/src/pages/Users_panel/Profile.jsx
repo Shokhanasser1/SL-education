@@ -1,4 +1,4 @@
-import './profileStyle.scss';
+import './UsersStyle.scss';
 export default function Profile() {
     return (
         <div className="profile-page">

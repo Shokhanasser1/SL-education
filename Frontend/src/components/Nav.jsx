@@ -60,13 +60,12 @@ function Nav() {
             <div>
                 {isAuthenticated ? (
                     <>
-                        {role === "teacher" && <Link className="link" to="/teacher">Teacher Dashboard</Link>}
                         {isAuthenticated && <ProfileMenu />}
                     </>
                 ) : (
                 <Link className="link" to={"/sign_in"}>Sign in
                 <i className="fa fa-user icon"></i></Link>
-                )}            
+                )}           
             </div>
         </nav>
     );

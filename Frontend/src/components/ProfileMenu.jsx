@@ -5,8 +5,22 @@ import "./profileMenu.scss";
 export default function ProfileMenu() {
     
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [role, setRole] = useState(null);
     const menuRef = useRef(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("access");
+        const storedRole = localStorage.getItem("role");
+
+        if (token) {
+            setIsAuthenticated(true);
+            setRole(storedRole);
+        } else {
+            setIsAuthenticated(false);
+            setRole(null);
+        }
+    }, []);
 
     const handleLogout = () => {
         localStorage.clear();
@@ -31,7 +45,9 @@ export default function ProfileMenu() {
       <i className="fas fa-user-circle icon" onClick={() => setIsAuthenticated(!isAuthenticated)}></i>
       {isAuthenticated && (
         <div className="dropdown">
-        <Link className="link" to={"/profile"}>Профиль</Link>
+          <Link className="link" to={"/profile"}>Профиль</Link>
+          {role === "teacher" && <Link className="link" to="/teacher-dashboard">Teacher Dashboard</Link>}
+
           <Link className="link" to={"/profile-settings"}>Настройки</Link>
           <button className="link" onClick={handleLogout}>Выход</button>
         </div>

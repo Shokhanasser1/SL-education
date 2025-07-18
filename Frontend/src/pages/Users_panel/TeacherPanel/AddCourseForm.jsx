@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import '../UsersStyle.scss';
 
 export default function AddCourseForm() {
   const [title, setTitle] = useState('');
@@ -17,12 +18,15 @@ export default function AddCourseForm() {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessage("Курс добавлен");
+
+      window.location.href = '/teacher-dashboard'; // Перенаправление на панель учителя
     } catch (err) {
       setMessage("Ошибка: " + err.response?.data?.detail || "Не удалось создать курс");
     }
   };
 
   return (
+    <div className="form-container">
     <form onSubmit={handleSubmit}>
       <h3>Добавить курс</h3>
       <input placeholder="Название курса" value={title} onChange={e => setTitle(e.target.value)} />
@@ -30,5 +34,6 @@ export default function AddCourseForm() {
       <button type="submit">Создать</button>
       {message && <p>{message}</p>}
     </form>
+    </div>
   );
 }

@@ -1,6 +1,7 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../UsersStyle.scss';
+
 export default function MyCourses() {
 
     const [courses, setCourses] = useState([]);
@@ -29,7 +30,7 @@ export default function MyCourses() {
   if (loading) return <p>Загрузка...</p>;
 
     return (
-    <div>
+    <div className="my-courses-container">
       <h2>Мои курсы</h2>
       {courses.length === 0 ? (
         <p>У вас пока нет курсов.</p>
