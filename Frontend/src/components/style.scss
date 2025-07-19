@@ -48,6 +48,48 @@ nav {
     background: #fff;
     gap: 30px;
 
+     .nav-links {
+    display: flex;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      display: none;
+      flex-direction: column;
+      align-items: start;
+      position: absolute;
+      top: 80px;
+      width: 300px;
+      background-color: #ffffff;
+      border-radius: 6px;
+      padding: 20px;
+
+      Link,
+      a,
+      select,
+      svg {
+        transition: 0.3s;
+        &:active {
+          color: $blue;
+          transform: scale(0.9);
+        }
+      }
+    }
+
+    &.open {
+      display: flex;
+    }
+  }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
     div {
         display: flex;
         align-items: center;
@@ -94,6 +136,20 @@ nav {
         font-size: 14px;
         transition: .3s;
     }
+    button {
+        background-color: transparent;
+        color: #000;
+        border: none;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        transition: .3s;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+    
 }
 
 
