@@ -59,6 +59,18 @@
                 background-color: yellow;
             }
         }
+        select {
+            width: 40%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            
+            &:focus {
+                border-color: $blue;
+                box-shadow: 0 0 5px $blue;
+            }
+        }
         }
 
     .log-reg-btns {
