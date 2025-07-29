@@ -11,11 +11,13 @@ import Settings from "./pages/Users_panel/Settings";
 import TeacherDashboard from "./pages/Users_panel/TeacherPanel/TeacherDashboard";
 import AddCourseForm from "./pages/Users_panel/TeacherPanel/AddCourseForm";
 
+
 import ErrorPage from "./components/ErrorPage";
 
 function App() {
     return (
         <BrowserRouter>
+
             <Nav />
             <Routes>
                 <Route path="sign_in" element={<Login /> } />
@@ -25,7 +27,6 @@ function App() {
                 <Route path="/profile-settings" element={<Settings /> } />
                 <Route path="/teacher-dashboard" element={<TeacherDashboard /> } />
                 <Route path="/teacher-dashboard/add-course" element={<AddCourseForm /> } />
-        {/* ⛔ Ловушка для всех остальных путей */}
         <Route path="*" element={<ErrorPage />} />
             </Routes>
             <Footer />
