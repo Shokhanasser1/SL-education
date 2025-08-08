@@ -5,5 +5,8 @@
   "career": "Карьера",
   "signIn": "Войти",
   "logout": "Выход",
-  "Register": "Регистрация"
+  "Register": "Регистрация",
+  "teacher-dashboard": "Панель учителя",
+  "profile": "Профиль",
+  "settings": "Настройки"
 }

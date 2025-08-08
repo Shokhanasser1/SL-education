@@ -10,10 +10,11 @@ function Nav() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [role, setRole] = useState(null);
     const { t, i18n } = useTranslation();
-    
+
     useEffect(() => {
         const token = localStorage.getItem("access");
         const storedRole = localStorage.getItem("role");
+        
 
         if (token) {
             setIsAuthenticated(true);
@@ -23,7 +24,7 @@ function Nav() {
             setRole(null);
         }
     }, []);
-    
+
     console.log(role);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -32,7 +33,7 @@ function Nav() {
     return (
         <nav>
             <Link className="link" to="/"><h1>SL Education</h1></Link>
-            
+
             <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
                 <Link className="link" to="/allCourses">{t('courses')}</Link>
                 <Link className="link" to="/events">{t('events')}</Link>
@@ -74,7 +75,13 @@ function Nav() {
                 </button>
             </div>
             <div className="lang-changer">
-                <select onChange={(e) => i18n.changeLanguage(e.target.value)}>
+                <select   
+                value={i18n.language}
+                onChange={(e) => {
+                const lang = e.target.value;
+                i18n.changeLanguage(lang);
+                localStorage.setItem("lang", lang);
+                    }}>
                     <option value="en">EN</option>
                     <option value="ru">RU</option>
                 </select>

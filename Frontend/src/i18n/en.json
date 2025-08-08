@@ -5,5 +5,9 @@
   "career": "Career",
   "signIn": "Sign in",
   "logout": "Logout",
-  "Register": "Register"
+  "Register": "Register",
+  "teacher-dashboard": "Teacher Dashboard",
+  "profile": "Profile",
+  "settings": "Settings"
+
 }

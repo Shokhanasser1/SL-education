@@ -45,7 +45,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff;
+    background: hsl(0, 0%, 100%);
     gap: 30px;
 
      .nav-links {
@@ -128,6 +128,7 @@ nav {
             justify-content: center;
         }
     }
+
 
     .link {
         color: #000;

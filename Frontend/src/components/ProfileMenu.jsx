@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./profileMenu.scss";
+import { useTranslation } from "react-i18next";
+
 
 export default function ProfileMenu() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -8,6 +10,7 @@ export default function ProfileMenu() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // <-- отдельное состояние
   const menuRef = useRef(null);
   const navigate = useNavigate();
+  const { t } = useTranslation();
   
 
 
@@ -43,12 +46,12 @@ export default function ProfileMenu() {
 
       {isAuthenticated && isDropdownOpen && (
         <div className="dropdown">
-          <Link className="link" to={"/profile"}>Profile</Link>
+          <Link className="link" to={"/profile"}>{t('profile')}</Link>
           {role === "teacher" && (
-            <Link className="link" to="/teacher-dashboard">Teacher Dashboard</Link>
+            <Link className="link" to="/teacher-dashboard">{t('teacher-dashboard')}</Link>
           )}
-          <Link className="link" to={"/profile-settings"}>Настройки</Link>
-          <button className="link" onClick={handleLogout}>Выход</button>
+          <Link className="link" to={"/profile-settings"}>{t('settings')}</Link>
+          <button className="link" onClick={handleLogout}>{t('logout')}</button>
         </div>
       )}
     </div>
