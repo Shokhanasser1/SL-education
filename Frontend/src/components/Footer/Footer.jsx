@@ -1,5 +1,6 @@
 import { memo } from "react";
 import emailjs from "emailjs-com";
+import "./Footer.scss";
 
 function Footer() {
     const SERVICE_ID = "service_zolbm24";

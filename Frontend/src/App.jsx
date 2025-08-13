@@ -5,8 +5,8 @@ import Courses from "./pages/Courses";
 import About from "./pages/About";
 import Events from "./pages/Events";
 
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+import Nav from "./components/Navigation/Nav";
+import Footer from "./components/Footer/Footer";
 
 import Login from "./pages/Authentication/Login";
 import Register from "./pages/Authentication/Register";
@@ -18,7 +18,7 @@ import TeacherDashboard from "./pages/Users_panel/TeacherPanel/TeacherDashboard"
 import AddCourseForm from "./pages/Users_panel/TeacherPanel/AddCourseForm";
 
 
-import ErrorPage from "./components/ErrorPage";
+import ErrorPage from "./components/Error/ErrorPage";
 
 function App() {
     return (

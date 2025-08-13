@@ -1,4 +1,4 @@
-import './style.scss';
+import './ErrorPage.scss';
 
 export default function errorPage() {
 
