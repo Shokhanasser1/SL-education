@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import MyCourses from './MyCourses';
-import '../UsersStyle.scss';
+import './teacherPanel.scss';
 
 export default function TeacherDashboard() {
     return (

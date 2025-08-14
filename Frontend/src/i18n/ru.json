@@ -7,5 +7,10 @@
   "Register": "Регистрация",
   "teacher-dashboard": "Панель учителя",
   "profile": "Профиль",
-  "settings": "Настройки"
+  "settings": "Настройки",
+  "tashkent": "Ташкент",
+  "samarkand": "Самарканд",
+  "bukhara": "Бухара",
+  "khorezm": "Хорезм",
+  "selectedLocation": "Выберите локацию"
 }

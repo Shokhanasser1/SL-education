@@ -1,21 +1,21 @@
 import { memo, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import ProfileMenu from "../ProfileMenu";
+import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useTranslation } from 'react-i18next';
+import ReactCountryFlag from "react-country-flag";
 import "./Nav.scss";
 
 const languages = [
-    { code: "uz", name: "O'zbekcha", flag: "🇺🇿" },
-    { code: "ru", name: "Русский", flag: "🇷🇺" },
-    { code: "en", name: "English", flag: "🇬🇧" },
+    { code: "uz", name: "O'zbekcha", countryCode: "UZ" },
+    { code: "ru", name: "Русский", countryCode: "RU" },
+    { code: "en", name: "English", countryCode: "GB" },
 ];
 const locations = [
-    { code: "TAS", name: "Ташкент" },
-    { code: "SAM", name: "Самарканд" },
-    { code: "BUH", name: "Бухара" },
-    { code: "XIV", name: "Хива" },
-    { code: "NUK", name: "Нукус" },
+    { code: "TAS", nameKey: "tashkent" },
+    { code: "SAM", nameKey: "samarkand" },
+    { code: "BUH", nameKey: "bukhara" },
+    { code: "HOR", nameKey: "khorezm" },
 ];
 
 function Nav() {
@@ -25,7 +25,7 @@ function Nav() {
     const [role, setRole] = useState(null);
 
     const [selectedLang, setSelectedLang] = useState(languages[0]);
-    const [selectedLocation, setSelectedLocation] = useState("Выберите локацию");
+    const [selectedLocation, setSelectedLocation] = useState(null);
 
     const [isLangOpen, setIsLangOpen] = useState(false);
     const [isLocationOpen, setIsLocationOpen] = useState(false);
@@ -54,7 +54,7 @@ function Nav() {
 
 
     const handleSelectLocation = (location) => {
-        setSelectedLocation(location.name);
+        setSelectedLocation(location.code);
         setIsLocationOpen(false);
     };
     useEffect(() => {
@@ -99,7 +99,7 @@ function Nav() {
 
                 <div className={`location-dropdown ${isLocationOpen ? "open" : ""}`} ref={locationDropdownRef}>
                     <button className="dropdown-btn" onClick={() => setIsLocationOpen(p => !p)}>
-                        <span className="selected-location">{selectedLocation}</span>
+                        <span className="selected-location">{selectedLocation ? t(locations.find(loc => loc.code === selectedLocation).nameKey) : t('selectedLocation')}</span>
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path d="M7 10l5 5 5-5z" fill="currentColor" />
                         </svg>
@@ -108,7 +108,7 @@ function Nav() {
                         <ul className="dropdown-list">
                             {locations.map((loc) => (
                                 <li key={loc.code} onClick={() => handleSelectLocation(loc)}>
-                                    {loc.name}
+                                    {t(loc.nameKey)}
                                 </li>
                             ))}
                         </ul>
@@ -127,7 +127,7 @@ function Nav() {
             </div>
             <div className={`lang-changer ${isLangOpen ? "open" : ""}`} ref={langDropdownRef}>
                 <button className="dropdown-btn" onClick={() => setIsLangOpen(p => !p)}>
-                    <span className="flag">{selectedLang.flag}</span>
+                    <span className="flag"><ReactCountryFlag countryCode={selectedLang.countryCode} svg style={{width: "1.5em", height: "1.5em" }} /></span>
                     <svg viewBox="0 0 24 24" width="20" height="20">
                         <path d="M7 10l5 5 5-5z" fill="currentColor" />
                     </svg>
@@ -136,7 +136,6 @@ function Nav() {
                     <ul className="dropdown-list">
                         {languages.map((lang) => (
                             <li key={lang.code} onClick={() => handleSelectLang(lang)}>
-                                <span className="flag">{lang.flag}</span>
                                 <span className="lang-name">{lang.name}</span>
                             </li>
                         ))}

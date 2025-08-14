@@ -7,6 +7,10 @@
   "Register": "Register",
   "teacher-dashboard": "Teacher Dashboard",
   "profile": "Profile",
-  "settings": "Settings"
-
+  "settings": "Settings",
+  "tashkent": "Tashkent",
+  "samarkand": "Samarkand",
+  "bukhara": "Bukhara",
+  "khorezm": "Khorezm",
+  "selectedLocation": "Select Location"
 }
