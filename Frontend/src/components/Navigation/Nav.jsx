@@ -6,21 +6,21 @@ import { useTranslation } from 'react-i18next';
 import "./Nav.scss";
 
 const languages = [
-    {code: "uz", name: "O'zbekcha", flag: "🇺🇿" },
-    {code: "ru", name: "Русский", flag: "🇷🇺" },
-    {code: "en", name: "English", flag: "🇬🇧" },
+    { code: "uz", name: "O'zbekcha", flag: "🇺🇿" },
+    { code: "ru", name: "Русский", flag: "🇷🇺" },
+    { code: "en", name: "English", flag: "🇬🇧" },
 ];
 const locations = [
-{ code: "TAS", name: "Ташкент" },
-{ code: "SAM", name: "Самарканд" },
-{ code: "BUH", name: "Бухара" },
-{ code: "XIV", name: "Хива" },
-{ code: "NUK", name: "Нукус" },
+    { code: "TAS", name: "Ташкент" },
+    { code: "SAM", name: "Самарканд" },
+    { code: "BUH", name: "Бухара" },
+    { code: "XIV", name: "Хива" },
+    { code: "NUK", name: "Нукус" },
 ];
 
 function Nav() {
     const { t, i18n } = useTranslation();
-    
+
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [role, setRole] = useState(null);
 
@@ -137,6 +137,7 @@ function Nav() {
                         {languages.map((lang) => (
                             <li key={lang.code} onClick={() => handleSelectLang(lang)}>
                                 <span className="flag">{lang.flag}</span>
+                                <span className="lang-name">{lang.name}</span>
                             </li>
                         ))}
                     </ul>
