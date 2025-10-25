@@ -79,7 +79,7 @@ import './style.scss';
 export default function Home() {
     return (
         <div className="home-page">
-            <h1>Home page</h1>
+            <h1>Home page Домашняя страница САЙТА</h1>
             <p>There will be home page content</p>
         </div>
     )    
